@@ -10,7 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.19.0",
+    "element-ui": "^2.11.1",
+    "lodash": "^4.17.15",
     "vue": "^2.5.2",
+    "vue-cookies": "^1.5.13",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
