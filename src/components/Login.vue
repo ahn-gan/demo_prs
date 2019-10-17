@@ -13,15 +13,14 @@
           <el-button @click="resetForm('userInfoForm')" class="btn-margin">重置</el-button>
         </el-form-item>
       </el-form>
-      <el-row class="register-button">
-        <el-button size="small" class="btn-register" @click="gotoRegister">企业注册</el-button>
-      </el-row>
     </div>
   </div>
 </template>
 
 <script>
   import {login} from '../request/userRequest'
+  import Cookies from 'vue-cookies'
+
   export default {
     name: "Login",
     data() {
@@ -53,16 +52,17 @@
       },
       async check() {
         let response = await login(this.user);
-        if (response.data.code === 'ERROR' && response.data.msg !== '') {
-          this.$message.error(response.data.msg);
-          return;
-        } else {
+        Cookies.set('JWT-TOKEN', response)
+        // if (response.data.code === 'ERROR' && response.data.msg !== '') {
+        //   this.$message.error(response.data.msg);
+        //   return;
+        // } else {
           // login success
           // let userType = response.data.data.accessToken['claims']['scopes'][0];
           // sessionStorage.setItem("userType", userType);
           // sessionStorage.setItem("user", this.user.userName);
           this.$router.push('/hello');
-        }
+        // }
       },
       resetForm(formName) {
         // this.$refs[formName].resetFields();

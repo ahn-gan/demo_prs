@@ -16,11 +16,12 @@
         v-model="areaValue" class="textarea-line-height">
       </el-input>
     </el-row>
-
   </div>
 </template>
 
 <script>
+  import {getUserList} from "../request/userRequest";
+
   export default {
     name: 'HelloWorld',
     data() {
@@ -31,7 +32,7 @@
       }
     },
     methods: {
-      handleScroll () {
+      handleScroll() {
         console.log('scroll')
       },
       handleChange(val) {
@@ -52,18 +53,22 @@
           setTimeout(resolve, ms, 'done');
         });
       },
-      promise1 () {
+      promise1() {
         return new Promise(function (resolve, reject) {
           console.log('p1')
           setTimeout(() => reject(new Error('fail')), 3000)
         })
       },
-      promise2 () {
+      promise2() {
         let p1 = this.promise1()
         return new Promise(function (resolve, reject) {
           console.log('p2')
           setTimeout(() => resolve(p1), 1000)
         })
+      },
+      async getUserList() {
+        let response = await getUserList()
+        console.log('===user==', response)
       }
     },
     mounted() {
@@ -85,11 +90,13 @@
       // console.log('Hi~~~') // 同步代码块先执行 再执行then()里的代码
 
       // const p1 =
+      //
+      // const p2 = this.promise2()
+      //
+      // p2.then(result => console.log(result))
+      //   .catch(error => console.log(error))
 
-      const p2 = this.promise2()
-
-      p2.then(result => console.log(result))
-        .catch(error => console.log(error))
+      this.getUserList()
     }
     ,
     watch: {
