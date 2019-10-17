@@ -7,6 +7,14 @@ async function login (params) {
   return body.data;
 }
 
+async function getUserList () {
+  const url = `/api/user/users`;
+  const body = await get(url);
+  console.log('==', body.data)
+  return body.data;
+}
+
 export {
-  login
+  login,
+  getUserList
 };
