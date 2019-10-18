@@ -52,20 +52,11 @@
       },
       async check() {
         let response = await login(this.user);
-        Cookies.set('JWT-TOKEN', response)
-        // if (response.data.code === 'ERROR' && response.data.msg !== '') {
-        //   this.$message.error(response.data.msg);
-        //   return;
-        // } else {
-          // login success
-          // let userType = response.data.data.accessToken['claims']['scopes'][0];
-          // sessionStorage.setItem("userType", userType);
-          // sessionStorage.setItem("user", this.user.userName);
-          this.$router.push('/hello');
-        // }
+        Cookies.set('JWT-TOKEN', response);
+        this.$router.push('/hello')
       },
       resetForm(formName) {
-        // this.$refs[formName].resetFields();
+        this.$refs[formName].resetFields();
         this.user = {
           userName: '',
           password: ''
